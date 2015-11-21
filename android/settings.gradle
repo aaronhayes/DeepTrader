@@ -1,0 +1,3 @@
+rootProject.name = 'DeepTrader'
+
+include ':app'
