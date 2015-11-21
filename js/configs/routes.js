@@ -1,17 +1,24 @@
 let ROUTES = {}
 
-function addRoute(name, navTitle, component, isView, config) {
+/**
+  * addRoute adds new Scene (route) to the application.\
+  * Parameters:
+  *   - name UNIQUE identifier of the route
+  *   - navTitle Title to be displayed in NavigationBar
+  *   - component React Component
+  *   - config misc. configurations
+  */
+function addRoute(name, navTitle, component, config) {
   config = config || {};
   ROUTES[name] = {
     navTitle: navTitle,
     component: component,
-    isView: isView,
     config: config
   };
 }
 
-addRoute('welcome', 'Deep Trader', require('../pages/HomePage'), false, {});
-addRoute('list', 'Choose a Stock', require('../pages/ListPage'), true, {});
-addRoute('stock', (route) => {return route.props.stock}, require('../pages/StockPage'), false, {});
+addRoute('welcome', 'Deep Trader', require('../pages/HomePage'), {});
+addRoute('list', 'Choose a Stock', require('../pages/ListPage'), {});
+addRoute('stock', (route) => {return route.props.stock}, require('../pages/StockPage'), {});
 
 module.exports = ROUTES;

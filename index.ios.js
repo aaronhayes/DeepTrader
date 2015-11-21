@@ -4,16 +4,10 @@ import routes from './js/configs/routes';
 import NavigationBarRouteMapper from './js/components/NavigationBarRouteMapper';
 
 var {
-  AppRegistry, Navigator, StyleSheet, View
+  AppRegistry, Navigator, StyleSheet
 } = React;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   navBar: {
     backgroundColor: 'white',
   },
@@ -25,13 +19,11 @@ const DeepTrader = React.createClass({
     const Page = newRoute.component;
 
     return (
-      <View style={styles.container}>
-        <Page
-          navigator={navigator}
-          route={route}
-          routeProps={route.props}
-        />
-      </View>
+      <Page
+        navigator={navigator}
+        route={route}
+        routeProps={route.props}
+      />
     );
   },
   render() {
