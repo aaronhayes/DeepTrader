@@ -65,9 +65,10 @@ export default {
 
   Title (route, navigator, index, navState) {
     const currentRoute = routes[route.name];
+    const title = typeof currentRoute.navTitle === 'function' ? currentRoute.navTitle(route) : currentRoute.navTitle;
     return (
       <Text style={[styles.navBarText, styles.navBarTitleText]}>
-        {currentRoute.navTitle}
+        {title}
       </Text>
     );
   }

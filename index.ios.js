@@ -23,6 +23,7 @@ const DeepTrader = React.createClass({
   renderScene(route, navigator) {
     const newRoute = routes[route.name];
     const Page = newRoute.component;
+
     return (
       <View style={styles.container}>
         <Page

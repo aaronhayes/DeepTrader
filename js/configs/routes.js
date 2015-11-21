@@ -12,6 +12,6 @@ function addRoute(name, navTitle, component, isView, config) {
 
 addRoute('welcome', 'Deep Trader', require('../pages/HomePage'), false, {});
 addRoute('list', 'Choose a Stock', require('../pages/ListPage'), true, {});
-addRoute('stock', 'Stock Viewer',  require('../pages/StockPage'), false, {});
+addRoute('stock', (route) => {return route.props.stock}, require('../pages/StockPage'), false, {});
 
 module.exports = ROUTES;
