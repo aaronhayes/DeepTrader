@@ -1,14 +1,7 @@
-import React from 'react-native';
+import React, {StyleSheet, Platform, Text,
+  View, TouchableNativeFeedback,
+  TouchableHighlight, ListView, Component} from 'react-native';
 import SearchBar from '../components/SearchBar';
-
-var {
-  StyleSheet,
-  Platform,
-  Text, View,
-  TouchableHighlight,
-  TouchableNativeFeedback,
-  ListView
-} = React;
 
 export default React.createClass({
   getInitialState() {
@@ -17,16 +10,14 @@ export default React.createClass({
       dataSource: ds.cloneWithRows(['CL8', 'AHZ', 'CZZ', 'NTC', 'NEA']),
     };
   },
-  _pressRow(rowData) {
-    this.props.navigator.push({name: 'stock', props: {stock: rowData}});
-  },
-  _renderRow(rowData){
+  _renderRow(code){
     let TouchableComponent = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight;
+    const { actions } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableComponent onPress={() => this._pressRow(rowData)}>
+        <TouchableComponent onPress={actions.routes.stockPage({stockCode: code, title: 'Viewing ' + code})}>
           <View style={styles.rightContainer}>
-              <Text style={styles.title}>{rowData}</Text>
+              <Text style={styles.title}>{code}</Text>
           </View>
         </TouchableComponent>
       </View>
@@ -71,7 +62,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   listView: {
-    paddingTop: 20,
+    paddingTop: 5,
     backgroundColor: '#F5FCFF',
   },
 });

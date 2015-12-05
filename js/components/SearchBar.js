@@ -25,7 +25,6 @@ export default React.createClass({
 
 const styles = StyleSheet.create({
   searchBar: {
-    marginTop: 64,
     padding: 3,
     paddingLeft: 8,
     flexDirection: 'row',

@@ -1,19 +1,11 @@
-import React from 'react-native';
-var {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight
-} = React;
+import React, { Component, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
-export default React.createClass({
-  _onLogin() {
-    this.props.navigator.replaceAtIndex({name:'list'}, 0);
-  },
+export default class HomePage extends Component {
   render() {
+    const { actions } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this._onLogin} >
+        <TouchableHighlight onPress={actions.routes.tabBar.home()}>
           <Text style={styles.welcome}>
             Deep Trader Log In
           </Text>
@@ -21,7 +13,7 @@ export default React.createClass({
       </View>
     )
   }
-});
+};
 
 const styles = StyleSheet.create({
   container: {
