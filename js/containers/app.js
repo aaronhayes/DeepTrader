@@ -10,14 +10,23 @@ import {
   Router,
   Schema,
   TabBar,
-  TabRoute
+  TabRoute,
+  Animations
 } from 'react-native-router-redux';
 
 import DefaultNavBarRightItem from '../components/DefaultNavBarRightItem';
 
-import HomePage from '../pages/HomePage';
+import WelcomePage from '../pages/WelcomePage';
+import LearnMorePage from '../pages/LearnMorePage';
+import TermsAndConditionsPage from '../pages/TermsAndConditionsPage';
+
 import ListPage from '../pages/ListPage';
 import StockPage from '../pages/StockPage';
+
+import WatchlistsPage from '../pages/WatchlistsPage';
+
+import SettingsPage from '../pages/SettingsPage';
+import ProfilePage from '../pages/ProfilePage';
 
 const mapStateToProps = state => ({
   router: state.router,
@@ -44,25 +53,32 @@ const defaultSchema = {
   navRight: <DefaultNavBarRightItem />
 };
 
-const assets = {};
+const assets = {
+  'logo': require('../../assets/logos/qwikly.png'),
+  'home': require('../../assets/icons/thin-0046_home_house.png'),
+  'profile': require('../../assets/icons/thin-0091_file_profile_user_personal.png'),
+};
+
 
 class Application extends Component {
-  getStockPageTitle() {
-    return 'hello';
-  }
   render() {
     return (
       <Router {...this.props} assets={assets} initial="signIn">
         <Schema name="default" {...defaultSchema} />
+        <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} />
 
-        <Route name="signIn" component={HomePage} type="reset" hideNavBar={true} />
-        <Route name="stockPage" component={StockPage} title={this._getStockPageTitle} />
+        <Route name="signIn" component={WelcomePage} type="reset" hideNavBar={true} />
+        <Route name="learn" component={LearnMorePage} schema="modal" hideNavBar={true} />
+        <Route name="terms" component={TermsAndConditionsPage} schema="modal" hideNavBar={true} />
+
+        <Route name="stockPage" component={StockPage} />
 
         <TabRoute name="tabBar" barTint='#FFFFFF' tint="#32DEAF">
-          <Route name="home" component={ListPage} title="Home" tabItem={{systemIcon: 'featured', title: 'Home'}} />
-          <Route name="search" component={ListPage} title="Search" tabItem={{systemIcon: 'search', title: 'Search'}} />
-          <Route name="watchlists" component={ListPage} title="Watchlists" tabItem={{systemIcon: 'favourites', title: 'Watchlists'}} />
-          <Route name="profile" component={ListPage} title="Profile" tabItem={{systemIcon: 'search', title: 'Profile'}} />
+          <Route name="home" component={ListPage} title="Home" tabItem={{icon: assets['home'], title: 'Home'}}  />
+          <Route name="search" component={ListPage} title="Search" tabItem={{icon: assets['home'], title: 'Search'}} />
+          <Route name="watchlists" component={WatchlistsPage} title="Watchlists" tabItem={{icon: assets['home'], title: 'Watchlists'}}  />
+          <Route name="profile" component={ProfilePage} title="Profile" tabItem={{icon: assets['profile'], title: 'Profile'}}  />
+          <Route name="settings" component={SettingsPage} title="Settings" tabItem={{icon: assets['profile'], title: 'Settings'}}  />
         </TabRoute>
       </Router>
     );

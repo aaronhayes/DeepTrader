@@ -6,7 +6,7 @@ export default class DefaultNavBarRightItem extends Component {
     let TouchableComponent = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableHighlight;
     return (
       <TouchableComponent>
-        <Text>Log Out</Text>
+        <Text>New</Text>
       </TouchableComponent>
     );
   }
