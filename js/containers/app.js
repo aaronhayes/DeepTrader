@@ -20,6 +20,7 @@ import WelcomePage from '../pages/WelcomePage';
 import LearnMorePage from '../pages/LearnMorePage';
 import TermsAndConditionsPage from '../pages/TermsAndConditionsPage';
 
+import DashboardPage from '../pages/DashboardPage';
 import ListPage from '../pages/ListPage';
 import StockPage from '../pages/StockPage';
 
@@ -50,7 +51,8 @@ const defaultSchema = {
   },
   statusStyle: 'light-content',
   tabBar: TabBar,
-  navRight: <DefaultNavBarRightItem />
+  navRightTitle: 'Alerts', //<DefaultNavBarRightItem />
+  navRightColor: "#FFFFFF",
 };
 
 const assets = {
@@ -68,13 +70,13 @@ class Application extends Component {
         <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} />
 
         <Route name="signIn" component={WelcomePage} type="reset" hideNavBar={true} />
-        <Route name="learn" component={LearnMorePage} schema="modal" hideNavBar={true} />
-        <Route name="terms" component={TermsAndConditionsPage} schema="modal" hideNavBar={true} />
+        <Route name="learn" component={LearnMorePage} schema="modal" />
+        <Route name="terms" component={TermsAndConditionsPage} schema="modal" />
 
         <Route name="stockPage" component={StockPage} />
 
         <TabRoute name="tabBar" barTint='#FFFFFF' tint="#32DEAF">
-          <Route name="home" component={ListPage} title="Home" tabItem={{icon: assets['home'], title: 'Home'}}  />
+          <Route name="home" component={DashboardPage} title="Dashboard" tabItem={{icon: assets['home'], title: 'Home'}}  />
           <Route name="search" component={ListPage} title="Search" tabItem={{icon: assets['home'], title: 'Search'}} />
           <Route name="watchlists" component={WatchlistsPage} title="Watchlists" tabItem={{icon: assets['home'], title: 'Watchlists'}}  />
           <Route name="profile" component={ProfilePage} title="Profile" tabItem={{icon: assets['profile'], title: 'Profile'}}  />
