@@ -1,4 +1,4 @@
-# Deep Trader React Native Application
+# Example React Native Application
 
 
 ## Development Guide
